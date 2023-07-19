@@ -58,10 +58,10 @@ public class Main {
 
 	public static Contact searchContact(PhoneBook phoneBook) {
 		Scanner scan = new Scanner(System.in);
-		System.out.print("Digite o número: ");
-		String number = scan.next();
+		System.out.print("Digite o nome: ");
+		String name = scan.next();
 
-		return phoneBook.getContactByPhone(number);
+		return phoneBook.getContactByName(name);
 	}
 
 	public static void handleOption(int opt, PhoneBook phoneBook) {
@@ -93,7 +93,7 @@ public class Main {
 					break;
 				}
 				Contact newContact = createContact();
-				phoneBook.updateContactByPhone(contact.getPhone(), newContact);
+				phoneBook.updateContactByName(contact.getName(), newContact);
 				break;
 
 			case 5:
@@ -103,7 +103,7 @@ public class Main {
 					break;
 				}
 
-				phoneBook.deleteContactByPhone(contact.getPhone());
+				phoneBook.deleteContactByName(contact.getName());
 				break;
 		}
 	}

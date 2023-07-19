@@ -26,48 +26,23 @@ public class PhoneBook{
 	// Read
 	public ArrayList<Contact> getAllContacts(){return this.contacts;}
 
-	public ArrayList<Contact> getContactsByName(String targetName) {
-		ArrayList<Contact> searchResults = new ArrayList<Contact>();
-
-		this.contacts.forEach((contact) -> {
-			if (contact.getName().equals(targetName)) {
-				searchResults.add(contact);
-			}
-		});
-
-		return searchResults;
-	}
-
-	public Contact getContactByPhone(String phone) {
-		//Contact result = null;
-		return this.contacts.stream().filter(c -> c.getPhone().equals(phone)).findFirst().orElse(null);
-
-		//this.contacts.forEach((contact) -> {
-		//	if (contact.getPhone().equals(phone)) {
-		//		return contact;
-				//result = contact;
-		//	}
-		//});
-
-		//return result;
+	public Contact getContactByName(String name) {
+		return this.contacts.stream().filter(c -> c.getName().equals(name)).findFirst().orElse(null);
 	}
 
 	// Update
 	public void updateContacts(ArrayList<Contact> contacts) {this.contacts = contacts;}
 
-	public void updateContactByPhone(String phone, Contact newContact) {
-		this.contacts.forEach((contact) -> {
-			if (contact.getPhone().equals(phone)) {
-				contact = newContact;
-			}
-		});
+	public void updateContactByName(String name, Contact newContact) {
+		Contact cont = this.contacts.stream().filter(c -> c.getName().equals(name)).findFirst().orElse(null);
+		this.contacts.set(this.contacts.indexOf(cont), newContact);
 	}
 
 	// Delete
 	public void deleteAllContacts() {this.contacts.clear();}
 
-	public boolean deleteContactByPhone(String phone) {
-		return this.contacts.removeIf(c -> c.getPhone().equals(phone));
+	public boolean deleteContactByName(String name) {
+		return this.contacts.removeIf(c -> c.getName().equals(name));
 	}
 
 
